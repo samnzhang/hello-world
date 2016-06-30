@@ -1,0 +1,82 @@
+                           Table "public.doctor"
+    Column    |         Type          | Modifiers | Storage  | Description 
+--------------+-----------------------+-----------+----------+-------------
+ doctor_id    | integer               | not null  | plain    | 
+ name         | character varying(32) |           | extended | 
+ specialty    | character varying(32) |           | extended | 
+ years_of_exp | integer               |           | plain    | 
+Indexes:
+    "doctor_pkey" PRIMARY KEY, btree (doctor_id)
+Has OIDs: no
+
+                           Table "public.drug"
+   Column   |          Type          | Modifiers | Storage  | Description 
+------------+------------------------+-----------+----------+-------------
+ trade_name | character varying(32)  | not null  | extended | 
+ formula    | character varying(128) |           | extended | 
+Indexes:
+    "drug_pkey" PRIMARY KEY, btree (trade_name)
+Has OIDs: no
+
+                           Table "public.patient"
+     Column     |         Type          | Modifiers | Storage  | Description 
+----------------+-----------------------+-----------+----------+-------------
+ healthcare_num | integer               | not null  | plain    | 
+ name           | character varying(32) |           | extended | 
+ address        | character varying(64) |           | extended | 
+ age            | integer               |           | plain    | 
+Indexes:
+    "patient_pkey" PRIMARY KEY, btree (healthcare_num)
+Has OIDs: no
+
+                 Table "public.pharmaceutical_company"
+  Column   |         Type          | Modifiers | Storage  | Description 
+-----------+-----------------------+-----------+----------+-------------
+ name      | character varying(32) | not null  | extended | 
+ phone_num | integer               |           | plain    | 
+Indexes:
+    "pharmaceutical_company_pkey" PRIMARY KEY, btree (name)
+Has OIDs: no
+
+                        Table "public.pharmacy"
+  Column   |         Type          | Modifiers | Storage  | Description 
+-----------+-----------------------+-----------+----------+-------------
+ name      | character varying(32) | not null  | extended | 
+ address   | character varying(64) | not null  | extended | 
+ phone_num | integer               |           | plain    | 
+Indexes:
+    "pharmacy_pkey" PRIMARY KEY, btree (name, address)
+Has OIDs: no
+
+                       Table "public.prescribes"
+  Column  |         Type          | Modifiers | Storage  | Description 
+----------+-----------------------+-----------+----------+-------------
+ patient  | integer               |           | plain    | 
+ doctor   | integer               |           | plain    | 
+ drug     | character varying(32) |           | extended | 
+ quantity | integer               |           | plain    | 
+ date     | date                  |           | plain    | 
+Has OIDs: no
+
+           Table "public.primary_physician"
+ Column  |  Type   | Modifiers | Storage | Description 
+---------+---------+-----------+---------+-------------
+ patient | integer |           | plain   | 
+ doctor  | integer |           | plain   | 
+Has OIDs: no
+
+                               Table "public.produces"
+         Column         |         Type          | Modifiers | Storage  | Description 
+------------------------+-----------------------+-----------+----------+-------------
+ drug                   | character varying(32) |           | extended | 
+ pharmaceutical_company | character varying(32) |           | extended | 
+Has OIDs: no
+
+                          Table "public.sells"
+  Column  |          Type          | Modifiers | Storage  | Description 
+----------+------------------------+-----------+----------+-------------
+ drug     | character varying(32)  |           | extended | 
+ pharmacy | character varying(128) |           | extended | 
+ price    | integer                |           | plain    | 
+Has OIDs: no
+
